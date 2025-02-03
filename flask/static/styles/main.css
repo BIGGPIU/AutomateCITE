@@ -1,0 +1,130 @@
+
+@font-face {
+    font-family: montserrat-black;
+    src: url("./Montserrat-Black.ttf");
+}
+
+@font-face {
+    font-family: montserrat-regular;
+    src: url("./Montserrat-Regular.ttf");
+}
+
+
+:root {
+    --main-bg-color:#2b2a33;
+    --secondary-bg-color:#42414d;
+    --notice-me-plz:#0ac3e1;
+}
+
+html,body {
+    background-color:var(--secondary-bg-color) ;
+    color:white;
+    margin: 0 0 0 0 ;
+    font-family: montserrat-regular;
+}
+
+.container {
+    margin-top: 5px;
+    width:80%;
+    border-radius: 5px;
+    background-color: var(--main-bg-color);
+    transform: translate(-50%);
+    left:50%;
+    position:absolute;
+}
+
+.pi {
+    width:100%;
+    height:100vh;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+#obligatory {
+    text-align: center;
+    position:relative;
+    margin-top: 5px;
+    font-size: 32px;
+    border-color: white;
+    border-bottom: 2px solid white;
+}
+
+.pipee {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+#sendmsgsenseHAT {
+    height:1em;
+    position:relative;
+    left:50%;
+    transform: translate(-50%);
+    margin-bottom: 10px;
+}
+
+.senseHAT {
+    position:relative;
+    height:1em;
+}
+
+.senseHAT button {
+    border-style: solid;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#sendpixelartsenseHAT {
+    position:relative;
+    width:calc(50px*8);
+    height:calc(50px*8);
+    left:50%;
+    transform: translate(-50%);
+}
+
+
+
+.pixel {
+    width:50px;
+    height:50px;
+    margin: 0;
+    color:transparent;
+    border: 0;
+    padding: 0;
+    /* you know what this is my tool nerd if you dont like the size then go away */
+}
+
+.pixelartsensehattxt {
+    position:relative;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.center {
+    position:absolute;
+    left:50%;
+    transform: translate(-50%);
+}
+
+.send-fill {
+    margin-top: 5px;
+    width:100%;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#clearsenseHATcolor {
+    height:1em;
+    position:relative;
+    left:50%;
+    transform: translate(-50%);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    border-style: solid;
+    border-radius: 5px;
+    background-color: white;
+}

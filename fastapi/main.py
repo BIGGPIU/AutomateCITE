@@ -10,6 +10,7 @@ app = FastAPI(
 
 @app.get("/sensehat/sendmessage/{message}")
 async def display_message(message):
+    message.replace("_"," ")
     x = senseHAT()
     x.displayMessage(message)
         
