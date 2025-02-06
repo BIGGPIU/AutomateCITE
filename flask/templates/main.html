@@ -16,8 +16,8 @@
     <body>
        <div class="container">
             <div id="obligatory">Welcome to PIPY v1.0.0</div>
-            <div class="pi">
                 {% for i in dictionary.keys()%}
+                <div class="pi">
                     <div class="pipee">Raspberry pi at {{i}}</div>
                     {% for x in dictionary[i].keys()%}
                     {% if x == "senseHAT"%}
@@ -35,7 +35,7 @@
                             <div class="center">
                                 <form action="" method="get">
                                     <label for="r">Clear senseHAT LEDs</label>
-                                    <input type="text" name="r" maxlength="3" placeholder="Red">
+                                    <input type="text" name="r,{{i}}" maxlength="3" placeholder="Red">
                                     <input type="text" name="g" maxlength="3" placeholder="Green">
                                     <input type="text" name="b" maxlength="3" placeholder="Blue">
                                     <button type="submit">Send</button>
@@ -50,7 +50,20 @@
                             </form>
                         </div>
                     </div>
+                </div>
                     {% endif %}
+                    {%if x == "camera"%}
+                    <div class="camera">
+                        <div class="center">
+                                <!-- {%if "photo" in dictionary[i].keys() %}
+                                <img src="{{dictionary[i]['photo']}}" alt="your picture">
+                                {%endif%} -->
+                                <!-- <div class="ipcheck---" style="opacity: 0%;">{{i}}</div> -->
+                            <button name="takephoto" value="{{i}}" class="takephoto">Take photo</button>
+                            
+                        </div>
+                    </div>
+                    {%endif%}
                     {%endfor%}
                     <!--<div class="senseHAT">
                         <div id="sendmsgsenseHAT">
@@ -84,5 +97,6 @@
                     </div>
             </div>
        </div> 
+       <script src="{{ url_for('static',filename='scripts/main.js') }}"></script>
     </body>
 </html>
