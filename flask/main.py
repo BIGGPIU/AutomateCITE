@@ -48,6 +48,12 @@ def main():
                 y = i.split(",")[1]
                 print (f"http://{y}:8000/sensehat/clear/{r}/{g}/{b}")
                 # requests.post(f"http://{y}:8000/sensehat/clear/{r}/{g}/{b}")
+            if "showconstant" in i:
+                if request.args.get(i) == "time":
+                    requests.post(f"http://{y}:8000/sensehat/display/time")
+            # if "pixel" in i:
+            #     if request.args.get(i) != None:
+
             # if "takephoto" in i:
             #     if request.args.get(i) != None:
             #         # print()

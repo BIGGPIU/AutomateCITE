@@ -78,6 +78,7 @@ html,body {
     position:relative;
     width:calc(50px*8);
     height:calc(50px*8);
+    margin-bottom: calc(50px*2);
     left:50%;
     transform: translate(-50%);
 }
@@ -127,4 +128,28 @@ button {
     border-style: solid;
     border-radius: 5px;
     background-color: white;
+}
+
+#send-constant-image {
+    height:5em;
+    position:Relative;
+    width:50%;
+    left:50%;
+    transform: translateX(-50%);
+    /* border-style: solid; */
+    /* border-radius: 5px; */
+}
+
+.sendConstantMessageText {
+    left:50%;
+    transform: translateX(-50%);
+    position:relative;
+    text-align: center;
+}
+
+#showconstant {
+    position:relative;
+    left:50%;
+    width:100%;
+    transform: translateX(-50%);
 }
