@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+    <title>PIPY V.2.0.0</title>
+</head>
+
+<html>
+    <body>
+        <div id="obligatory">Welcome to PIPY v2.0.0</div>
+        {%for i in dictionary.keys()%}
+        <div class="block">
+            <div class="pipee">Raspberry pi at {{i}}</div>
+            {% for x in dictionary[i].keys()%}
+            {% if x == "senseHAT"%}
+            <div class="senseHAT">
+                <div class="sendmsgsenseHAT">
+                    <form action="">
+                        <label for="senseHATtxt" class="label">Send message to SenseHat</label>
+                        <input type="text" name="senseHATtxt,{{i}}" id="senseHATtxt">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+                <div class="clearsenseHATcolor">
+                    <form action="" >
+                        <div class="label">Clear SenseHat LED</div>
+                        <input type="text" name="r,{{i}}" maxlength="3" placeholder="Red"> <br>
+                        <input type="text" name="g" maxlength="3" placeholder="Green"> <br>
+                        <input type="text" name="b" maxlength="3" placeholder="Blue"> <br>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+                <div class="sendconstant">
+                    <form action="">
+                        <div class="label">Send Constant Message</div>
+                        <select name="showconstant,{{i}}" id="showconstant">
+                            <option value="time">Current Time</option>
+                            <option value="countdown">Countdown</option>
+                        </select>   
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+                <div class="sendcustomconstant">
+                    <form action="">
+                        <div class="label">Send Custom Constant Message</div>
+                        <input type="text" name="showconstantcstm,{{i}}">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+                
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {%endfor%}
+    </body>
+</html>

@@ -25,13 +25,8 @@ objects = {
 app = Flask(__name__)
 @app.route("/")
 def main():
-    # print(objects["restart_signal"])
     forcereset = True
     if request.method == "GET":
-        # pasttime = time.time()
-
-        # print(pi)
-        # print(request.args)
         for i in request.args.keys():
             print(i)
             if "senseHATtxt" in i:
@@ -48,30 +43,18 @@ def main():
                 y = i.split(",")[1]
                 print (f"http://{y}:8000/sensehat/clear/{r}/{g}/{b}")
                 # requests.post(f"http://{y}:8000/sensehat/clear/{r}/{g}/{b}")
+            if "showconstantcstm" in i:
+                y = i.split(",")[1]
+                temp = request.args.get(i)
+                print(f"http://{y}:8000/sensehat/sendmessage/{temp}/permanent)")
+                # requests.post(f"http://{y}:8000/sensehat/sendmessage/{temp}")
             if "showconstant" in i:
+                y = i.split(",")[1]
                 if request.args.get(i) == "time":
                     requests.post(f"http://{y}:8000/sensehat/display/time")
-            # if "pixel" in i:
-            #     if request.args.get(i) != None:
-
-            # if "takephoto" in i:
-            #     if request.args.get(i) != None:
-            #         # print()
-            #         # print(pasttime - time.time())
-            #         # pasttime = time.time()
-            #         y = request.args.get(i)
-            #         # x = requests.get(f"http://{y}:8000/camera/snap",headers={
-            #         #                     "accept":"application/json"
-            #         #                     })
-            #         # print(x)
-            #         forcereset = False
-            #         pi[request.args.get(i)].update({"photo":f"http://{y}:8000/camera/snap"})
-            # else:
-            #     try:
-            #         pi[request.args.get(i)].pop("photo")
-            #     except:
-            #         pass
-
+                if request.args.get(i) == "coundown":
+                    requests.post(f"http://{y}:8000/sensehat/display/countdown")
+  
         objects["restart_signal"] = 0
         if len(request.args) != 0 and forcereset:
             objects["restart_signal"] = 1
@@ -79,7 +62,7 @@ def main():
         
         
         
-        return render_template("main.html",dictionary=pi,restartsignal=objects["restart_signal"])
+        return render_template("main2.html",dictionary=pi,restartsignal=objects["restart_signal"])
         
 
 
