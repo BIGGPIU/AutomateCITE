@@ -14,16 +14,20 @@ class Serials:
     def findArduino() -> str:
         sercom = serial.tools.list_ports.comports()
         for i in sercom:
-            if i.vid == 2341:
-                return i.device        
+            if "Arduino Uno" in i.description:
+                return i.device      
         return "no arduino found"
     
     def convertBinaryToText(binary:list[int]) -> str:
-        characters = ["a","b","c","d","e","f","g","h","i","j","k"]
+        charactersHours = ["a","b","c"]
+        charactersMinutes = ["d","e","f","g","h","i","j","k"]
         final = ""
-        for i in range(len(binary)):
-            if binary[i] == 1:
-                final += characters[i]
+        for i in range(len(binary["hours"])):
+            if binary["hours"][i] == 1:
+                final += charactersHours[i]
+        for i in range(len(binary["minutes"])):
+            if binary["minutes"][i] == 1:
+                final += charactersMinutes[i]
         return final
             
 
@@ -36,13 +40,14 @@ class Printers:
         self.printerLandingPageLink:str = "http://172.20.71.116/"
         self.printers:WebElement = []
         self.currentPrinter:int = 0
-        self.webTimeout:int = 5
+        self.webTimeout:int = 2
         self.time:int = 0
 
 
-    def getPrinters(self) -> None:
+    def getPrinters(self,goToLanding = False) -> None:
         try:
-            self.driver.get(self.printerLandingPageLink)
+            if goToLanding:
+                self.driver.get(self.printerLandingPageLink)
         except:
             print("cannot access print page")
         
@@ -50,7 +55,6 @@ class Printers:
 
         x = self.driver.find_elements(By.CLASS_NAME,"nav-arrow")
         x[0].click()
-
         del x 
 
         self.printers = self.driver.find_elements(By.CSS_SELECTOR,"[role=menuitem]")
@@ -60,6 +64,9 @@ class Printers:
         self.currentPrinter += 1
         if self.currentPrinter == len(self.printers):
             self.currentPrinter = 0
+
+        # x = self.driver.find_elements(By.CLASS_NAME,"nav-arrow")
+        # x[0].click()
 
         try:
             self.printers[self.currentPrinter].click()
@@ -78,50 +85,110 @@ class Printers:
     def getPrinterTime(self) -> None:
         try:
             time = self.driver.find_element(By.CSS_SELECTOR,"div.mb-0 > div:nth-child(1) > div:nth-child(1) > span:nth-child(3)")
-            self.time = self.processTime(time.text)
+            if ":" in time:
+                self.time = self.processTime(time.text)
+            else:
+                self.time = 0
         except:
             self.time = 0
 
     def calculateTime(self):
-        timeStr = str(self.time)
-        binary = [0,0,0,0,0,0,0,0,0]
-        if int(timeStr[-1]) in [1,3,5,7,9]:
-            binary[0] = 1
-            self.time += -1
-        
-        for i in range(len(binary)):
-            ival = abs(i - len(binary))
+        timecopy = self.time
+        binary = {
+            "hours":[0,0,0],
+            "minutes":[0,0,0,0,0,0]
+        }
+        hours = 0
+        minutes = 0
+        while timecopy > 60:
+            timecopy += -60
+            hours += 1
+        minutes += timecopy
+
+        if hours != 0 and hours % 2 == 1:
+            binary["hours"][0] = 1
+            hours += -1
+
+        for i in range(len(binary["hours"])):
+            ival = abs(i - len(binary["hours"]))
             if i == 0:
                 continue
-            else:
-                if self.time == 0:
-                    return binary
-                if self.time - (2**ival) >= 0:
-                    binary[ival] = 1
-                    self.time += -(2**ival)
+            if hours - (2**ival) >= 0:
+                hours -= (2**ival)
+                binary["hours"][ival] = 1
+        
+
+        if minutes != 0 and minutes % 2 == 1:
+            binary["minutes"][0] = 1
+            minutes += -1
+        for i in range(len(binary["minutes"])):
+            ival = abs(i - len(binary["minutes"]))
+            if i == 0 and minutes != 0:
+                continue
+            if minutes == 0:
+                return binary
+            if (minutes - (2**ival) ) >= 0:
+                binary["minutes"][ival] = 1
+                minutes += -(2**ival)
         return binary
 
 
     def calculateTime2(time):
-        timeStr = str(time)
+        # timeStr = str(time)
         timecopy = time
-        binary = [0,0,0,0,0,0,0,0,0]
-        if int(timeStr[-1]) in [1,3,5,7,9]:
-            binary[0] = 1
-            timecopy += -1
-        
-        for i in range(len(binary)):
-            ival = abs(i - len(binary))
+        binary = {
+            "hours":[0,0,0],
+            "minutes":[0,0,0,0,0,0]
+        }
+        hours = 0
+        minutes = 0
+        while timecopy > 60:
+            timecopy += -60
+            hours += 1
+        minutes += timecopy
+
+        if hours != 0 and hours % 2 == 1:
+            binary["hours"][0] = 1
+            hours += -1
+
+        for i in range(len(binary["hours"])):
+            ival = abs(i - len(binary["hours"]))
             if i == 0:
                 continue
-            else:
-                if timecopy == 0:
-                    return binary
-                if timecopy - (2**ival) >= 0:
-                    binary[ival] = 1
-                    timecopy += -(2**ival)
-        return binary
+            if hours - (2**ival) >= 0:
+                hours -= (2**ival)
+                binary["hours"][ival] = 1
+        
 
+        if minutes != 0 and minutes % 2 == 1:
+            binary["minutes"][0] = 1
+            minutes += -1
+        for i in range(len(binary["minutes"])):
+            ival = abs(i - len(binary["minutes"]))
+            if i == 0 and minutes != 0:
+                continue
+            if minutes == 0:
+                return binary
+            if (minutes - (2**ival) ) >= 0:
+                binary["minutes"][ival] = 1
+                minutes += -(2**ival)
+        # if int(timeStr[-1]) in [1,3,5,7,9]:
+        #     binary[0] = 1
+        #     timecopy += -1
+        
+        # for i in range(len(binary)):
+        #     ival = abs(i - len(binary))
+        #     if i == 0:
+        #         continue
+        #     else:
+        #         if timecopy == 0:
+        #             return binary
+        #         if timecopy - (2**ival) >= 0:
+        #             binary[ival] = 1
+        #             timecopy += -(2**ival)
+        # return binary
+
+        return binary
 
 
     def processTime(self,time:str) -> int:
@@ -154,13 +221,31 @@ if __name__ == "__main__":
     # #x.incrementPrinter()
     # x.calculateTime()
 
-    Serials.findArduino()
+    # Serials.findArduino()
 
-    # while True:
-    #     sleep(1)
-    #     x = random.randint(1,500)
-    #     y = (Printers.calculateTime2(x))
-    #     ans = 0
+    while True:
+        sleep(1)
+        x = random.randint(1,400)
+        y = (Printers.calculateTime2(x))
+        ans = 0
+        for i in range(len(y["hours"])):
+            if y["hours"][i] == 1:
+                if i == 0:
+                    ans+=60
+                else:
+                    ans+=(2**i)*60
+        
+
+        for i in range(len(y["minutes"])):
+            if (y["minutes"][i]) == 1:
+                if i == 0:
+                    ans+=1
+                else:
+                    ans+=(2**i)
+        
+        print (ans)
+        print (x)
+
     #     for i in range(len(y)):
     #         if y[0] == 1 and i == 0:
     #             ans +=1
