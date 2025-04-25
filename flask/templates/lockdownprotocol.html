@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lockdown.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/lockdown.css') }}">
+    <title>Lockdown Protocol</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<html>
+    <body>
+        {% if restartsignal == 0%}
+        <div class="main-splash">
+            <div class="main-splash-main-text">Welcome to Lockdown Protocol</div>
+            <form action="" method="get">
+                <button type="submit" value="start" name="start">Initiate lockdown</button>
+            </form>
+            <div class="main-splash-scroll-for-rules">
+                <div id="section-1"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+                <div id="section-2">
+                    <div class="section-text">Scroll to learn how to play</div>
+                </div>
+                <div id="section-3"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+            </div>
+        </div>
+        <div class="splash-2">
+            <div class="step-1">
+                <div class="massive-text">Step 1 - Look for leads</div>
+                <div class="minor-text">
+                    someone has planted a catalyst that is going to uhh not explode soon<br><br>
+                    we must defuse the Catalyst to keep The CITE lab safe <br><br>
+                    The perpetrator has places puzzles around the CITE lab to keep us from defusing the catalyst <br><br>
+                    Look around the room for raspberry pi's with LED matrixes<br><br>
+                    These will contain mazes you must solve to look for the catalyst
+                </div>
+            </div>
+            <div class="image-step-1">
+                <img src="../static/thinking.png" alt="">
+            </div>
+            <div class="main-splash-scroll-for-rules">
+                <div id="section-1"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+                <div id="section-2">
+                    <div class="section-text">Keep going...</div>
+                </div>
+                <div id="section-3"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+            </div>
+        </div>
+        <div class="splash-3">
+            <div class="step-2">
+                <div class="massive-text">Step 2 - Solve Mazes</div>
+                <div class="minor-text">
+                    The perpetrator has created mazes to slow us down in our endeavors to defuse the catalyst <br><br>
+                    You are the yellow dot <br> <br>
+                    You must navigate your way to the green dot using the arrow keys while avoiding all red dots to clear the maze<br><br>
+                    If you touch a red dot you will be stunned for 1 second then taken back to the blue dot <br><br>
+                    Repeat this process until the catalyst has been found or time runs out
+                </div>
+            </div>
+            <div class="image-step-2">
+                <img src="../static/picture2.png" alt="">
+            </div>
+            <div class="main-splash-scroll-for-rules">
+                <div id="section-1"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+                <div id="section-2">
+                    <div class="section-text">keep going pretty please 🥺</div>
+                </div>
+                <div id="section-3"><svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83a.697.697 0 0 1-.979 0l-7.908-7.83a.68.68 0 0 1 0-.969.697.697 0 0 1 .979 0L10 13.25l7.418-7.141z"/></svg></div>
+            </div>
+        </div>
+        <div class="splash-4">
+            <div class="massive-text" style="text-align: center; width: 100%;">Support this project on github</div>
+            <a href="https://github.com/BIGGPIU/AutomateCITE">    
+                <div class="container-img">
+                    <img src="../static/github-mark-white.png" alt="">
+                </div>
+            </a>
+            <div class="container-img-big">
+                <img src="../static/iloveopensource.png" alt="">
+            </div>
+        </div>
+        {% endif %}
+        {% if restartsignal == 1%}
+        <div class="main-splash">
+            <div class="timer"></div>
+        </div>
+        <script>
+            timer = document.getElementsByClassName("timer")[0]
+            time = 60;
+            setInterval(decreaseAndDisplay,1000)
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            };
+            function decreaseAndDisplay() {
+                time += -1
+                timer.innerHTML = time
+                
+                xData = false
+                $.get("http://127.0.0.1:5000/lockdown/iscomplete", "",
+                    function (data) {
+                        // console.log(data.isComplete);
+                        if (data.isComplete == "true"){
+                            xData = true;
+                        } 
+                        else {
+                            xData = false;
+                        }
+                    },
+                );
+                if (xData == true) {
+                    alert("You defused the catalyst")
+                }
+            } 
+        </script>
+        {%endif%}
+    </body>
+</html>

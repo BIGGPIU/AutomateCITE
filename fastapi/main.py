@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from senseHAT import senseHAT
 # from sense_hat import SenseHat
 from fastapi.responses import FileResponse
@@ -8,6 +8,8 @@ from time import sleep
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 import socket
+from lockdownProtocol import *
+
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.settimeout(0)
@@ -35,19 +37,27 @@ app = FastAPI(
     version="1.0.0"
 )
 
+
+is_main = False #this is used for the lockdown protocol game
 display_Eternal = True
 @app.get("/ping")
 async def ping():
     global display_Eternal
     print("ping!")
+    x = senseHAT()
     display_Eternal = False
+    x.sense.clear()
+
     return "pong"
 @app.post("/sensehat/sendmessage/{message}")
 async def display_message(message):
     global display_Eternal # bad code practice my ass 
+
+    x = senseHAT()
+    x.sense.clear()
     display_Eternal = False
     message = message.replace("_"," ")
-    x = senseHAT()
+    # x = senseHAT()
     x.displayMessage(message)
 @app.post("/sensehat/clear/{r}/{g}/{b}")
 async def clearLEDs(r,g,b):
@@ -84,12 +94,16 @@ async def displayTime(x:senseHAT):
 async def showCustomMessage(message):
     global display_Eternal
     
+    x = senseHAT()
+
+    x.sense.clear()
+
     if display_Eternal:
         display_Eternal = False
+        
 
     display_Eternal = True
     message = message.replace("_"," ")
-    x = senseHAT()
     while display_Eternal:
         x.displayMessage(message)
         await asyncio.sleep(1)
@@ -99,12 +113,40 @@ async def showCustomMessage(message):
 async def countdown():
     global display_Eternal
 
+    x = senseHAT()
+
+    x.sense.clear()
+
     if display_Eternal:
         display_Eternal = False
     
     display_Eternal = True
 
-    x = senseHAT()
+    
     while display_Eternal:
         x.displayMessage(x.getTimeUntilNextClass())
         await asyncio.sleep(3)
+
+
+@app.post("/lockdownprotocol/{diff}/bomb")
+async def ldp(diff:int,request: Request):
+    '''diff should be 1 or 2'''
+    sense = senseHAT()
+    sense.sense.clear()
+    x = lockdown(request.client.host,sense,True)
+    if diff == 1:
+        x.getMaze(False)
+    else:
+        x.getMaze(True)
+    x.mode_prod()
+
+@app.post("/lockdownprotocol/{diff}")
+async def ldpnobomb(diff:int,request:Request):
+    sense = senseHAT()
+    sense.sense.clear()
+    x = lockdown(request.client.host,sense,False)
+    if diff == 1:
+        x.getMaze(False)
+    else:
+        x.getMaze(True)
+    x.mode_prod()

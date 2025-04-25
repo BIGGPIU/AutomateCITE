@@ -1,0 +1,222 @@
+
+@font-face {
+    font-family: Ubuntu;
+    src: url("./UbuntuCondensed-Regular.ttf");
+}
+
+@keyframes arrow-bounce {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-5px);}
+    100% {transform: translateY(0);}
+}
+
+html {
+    background-color: black;
+    color:greenyellow;
+    font-family: ubuntu;
+    overflow-x: hidden;
+}
+
+
+.main-splash{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+
+.main-splash-main-text {
+    font-size: 2vw;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+button {
+    font-size: 2vw;
+    position:absolute;
+    top:calc(50% + 3em);
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: greenyellow;
+    border: none;
+}
+
+.main-splash-scroll-for-rules{
+    position:absolute;
+    top:calc(100% - 3em);
+    left:50%;
+    transform: translateX(-50%);
+    font-size: 32px; 
+    width:40%;
+    height:2em;
+    background-color: transparent;
+}
+
+.float-l {
+    float:left;
+}
+
+svg {
+    fill: white;
+    float:left;
+    margin-top: 3px;
+    animation-name: arrow-bounce;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.align-center {
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.idk-what-to-call-this {
+    left:50%;
+    transform: translateX(-50%);
+    position:relative;
+}
+
+#section-1 {
+    width:25%;
+    height:100%;
+    background-color: transparent;
+    float:left;
+}
+
+#section-2 {
+    width:50%;
+    height:100%;
+    background-color: transparent;
+    float:left;
+}
+
+#section-1 svg {
+    float:right;
+}
+
+#section-3 {
+    width:25%;
+    height:100%;
+    background-color: transparent;
+    float:left;
+}
+
+.section-text {
+    text-align: center;
+}
+
+.splash-2 {
+    top:100%;
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.splash-3 {
+    top:200%;
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.splash-4 {
+    top:300%;
+    width:100%;
+    height:100%;
+    position: absolute;
+}
+
+.step-1 {
+    margin-bottom: 15px;
+    position:relative;
+    background-color: transparent;
+    width:40%;
+    height:30%;
+    left:20%;
+    transform: translateX(-50%);
+    float:left;
+}
+
+
+.massive-text {
+    font-size: 64px;
+    /* font-size: clamp(2rem, 1.5146rem + 15.534vw, 4rem); */
+
+}
+.minor-text {
+    text-align: left;
+    font-size: 32px;
+}
+
+@media only screen and (min-width: 720px) {
+    .massive-text {
+        font-size: 52px;
+        /* font-size: clamp(2rem, 1.5146rem + 15.534vw, 4rem); */
+    
+    }
+    .minor-text {
+        text-align: left;
+        font-size: 24px;
+    }
+}
+
+.image-step-1 {
+    float: left;
+    width: 30%;
+    height:90%;
+    opacity: 75%;
+    margin-left: 30%;
+}
+
+img {
+    width:100%;
+    height:100%;
+}
+
+.step-2 {
+    position:relative;
+    background-color: transparent;
+    width:40%;
+    height:30%;
+    left:20%;
+    transform: translateX(-50%);
+    float:left;
+}
+
+.image-step-2 {
+    float:left;
+    width:30%;
+    height:90%;
+    opacity:75%;
+    margin-left: 30%;
+}
+
+.container-img {
+    width:300px;
+    height:300px;
+    left:50%;
+    position:relative;
+    transform: translateX(-50%);
+    margin-top: 15px;
+}
+.container-img-big {
+    width:600px;
+    height:600px;
+    left:50%;
+    position:relative;
+    transform: translateX(-50%);
+    margin-top: 15px;
+}
+
+.timer {
+    left:50%;
+    top:50%;
+    position:relative;
+    transform: translate(-50%,-50%);
+    font-size: 64px;
+    text-align: center;
+}

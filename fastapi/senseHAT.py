@@ -9,9 +9,11 @@ class senseHAT:
         self.sense = SenseHat()
         self.sense.set_rotation(180)
 
+    def set_pixel(self,array):
+        self.sense.set_pixels(array)
 
     def displayMessage(self,message:str,r:int=255,g:int=255,b:int=255):
-        self.sense.show_message(message)
+        self.sense.show_message(message,text_colour=[r,g,b])
 
     def hex_to_rgb(hex):
         return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))

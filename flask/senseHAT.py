@@ -3,6 +3,7 @@
 # sense = SenseHat()
 
 class senseHAT:
+
     
     def __init__(self,ip):
         self.ip = ip
